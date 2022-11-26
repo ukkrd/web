@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+<VirtualHost *:80>
+        ServerName forward.mydomain.com
+        ProxyPreserveHost On
+
+        ProxyPass / http://127.0.0.1:5000/
+        ProxyPassReverse / http://127.0.0.1:5000/
+
+</VirtualHost>
+  
+  <meta charset="UTF-8">
+  <title>Deployment of ML Models</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="style.css"> 
+</head>
+
+<body>
+  
+ <div class="login">
+   <h1>Learn and Build</h1>
+   <h2>Machine Learning Model</h2>
+	<h3>Expected Salary</h3>
+
+     <!-- Main Input For Receiving Query to our ML Code -->
+    <form action="{{ url_for('prediction')}}"method="post">
+    	<input type="text" name="Years of Experience" placeholder="Years of Experience" required="required" />
+        <input type="text" name="Projects Build" placeholder="Projects Build" required="required" />
+		<input type="text" name="Interview_Grades" placeholder="Interview_Grades" required="required" />
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
